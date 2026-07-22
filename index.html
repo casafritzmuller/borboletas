@@ -11,9 +11,13 @@
   touch-action: manipulation;
 }
 :root {
-  --bg:      #0D1B4B;
+  --bg:      #10204E;
+  --bg2:     #1E2F63;
   --accent:  #E05C1A;
   --gold:    #F2B831;
+  --purple:  #6B3AA0;
+  --pink:    #D63384;
+  --green:   #7CB342;
   --card:    #FFFCF2;
   --card-rim:#E8DECC;
   --text:    #F0EBD8;
@@ -22,7 +26,7 @@
 html, body { height: 100%; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
-  background: var(--bg);
+  background: radial-gradient(120% 90% at 50% -10%, var(--bg2) 0%, var(--bg) 55%);
   color: var(--text);
   min-height: 100vh; min-height: 100dvh;
   display: flex; justify-content: center;
@@ -47,7 +51,9 @@ body {
 }
 .museum-logo {
   font-size: 2.2rem; letter-spacing: -1px; font-weight: 900;
-  color: var(--gold); line-height: 1;
+  line-height: 1;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--accent) 45%, var(--pink) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .museum-sub {
   font-size: .7rem; letter-spacing: 3px; text-transform: uppercase;
@@ -100,6 +106,13 @@ body {
   color: rgba(240,235,216,.7); font-size: 1.1rem;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
+.btn-acervo {
+  background: linear-gradient(90deg, rgba(107,58,160,.28), rgba(214,51,132,.22));
+  border: 1px solid rgba(214,51,132,.4); color: var(--text);
+  padding: 11px 22px; border-radius: 50px; font-size: .85rem; font-weight: 700;
+  cursor: pointer; letter-spacing: .3px; transition: transform .1s, opacity .15s;
+}
+.btn-acervo:active { transform: scale(.96); opacity: .9; }
 .btn-mute-sm {
   background: transparent; border: none; color: var(--dim); font-size: .85rem;
   cursor: pointer; padding: 2px 4px; transition: color .2s;
@@ -187,6 +200,56 @@ body {
   padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: .85rem;
 }
 
+/* ── ACERVO REAL (coleção do museu) ──────────────────────── */
+#colecao-screen { justify-content: flex-start; padding-top: 50px; gap: 10px; }
+.colecao-intro {
+  width: 100%; flex-shrink: 0; background: rgba(107,58,160,.14);
+  border: 1px solid rgba(107,58,160,.35); border-radius: 12px;
+  padding: 10px 14px; font-size: .74rem; line-height: 1.5;
+  color: rgba(240,235,216,.85); text-align: center;
+}
+.colecao-grid {
+  width: 100%; flex: 1; overflow-y: auto; padding-bottom: 20px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.ccard {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px; overflow: hidden; cursor: pointer;
+  transition: border-color .2s, transform .15s;
+}
+.ccard:active { transform: scale(.97); border-color: var(--purple); }
+.ccard-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; background: #000; }
+.ccard-img img { width: 100%; height: 100%; object-fit: cover; }
+.ccard-badge {
+  position: absolute; top: 6px; left: 6px; font-size: .56rem; font-weight: 800;
+  letter-spacing: .5px; text-transform: uppercase; color: #fff;
+  padding: 3px 8px; border-radius: 20px; backdrop-filter: blur(2px);
+}
+.ccard-body { padding: 8px 10px 10px; }
+.ccard-num { font-size: .58rem; letter-spacing: 1.5px; color: var(--dim); text-transform: uppercase; }
+.ccard-titulo { font-size: .82rem; font-weight: 700; line-height: 1.25; margin-top: 1px; }
+
+.cdetail-img {
+  width: 100%; max-width: 340px; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden;
+  background: #000; margin: 12px 0 4px; flex-shrink: 0;
+}
+.cdetail-img img { width: 100%; height: 100%; object-fit: cover; }
+.cdetail-badge {
+  font-size: .6rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  color: #fff; padding: 4px 12px; border-radius: 20px; margin-top: 10px;
+}
+.cdetail-num { font-size: .68rem; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-top: 10px; }
+.cdetail-titulo { font-size: 1.4rem; font-weight: 900; text-align: center; margin-top: 4px; }
+.cdetail-desc { font-size: .88rem; line-height: 1.6; color: rgba(240,235,216,.82); text-align: center; max-width: 340px; margin-top: 8px; }
+.cdetail-fact {
+  border-radius: 12px; padding: 12px 16px; max-width: 340px;
+  font-size: .84rem; line-height: 1.55; color: rgba(240,235,216,.92); margin-top: 14px;
+  text-align: center;
+}
+.cdetail-fact.sabia { background: rgba(242,184,49,.12); border: 1px solid rgba(242,184,49,.3); }
+.cdetail-fact.desafio { background: rgba(214,51,132,.12); border: 1px solid rgba(214,51,132,.35); }
+.cdetail-fact-lbl { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; opacity: .7; margin-bottom: 4px; display: block; }
+
 /* ── GAME ────────────────────────────────────────────────── */
 #game-screen { justify-content: space-between; padding: 14px 14px 12px; gap: 0; }
 .hud { width: 100%; display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; margin-bottom: 4px; }
@@ -243,13 +306,13 @@ body {
 #bottom-card .bfly-sym { cursor: pointer; }
 @keyframes matchPop {
   0%   { box-shadow: 0 1px 4px rgba(0,0,0,.15); transform: scale(1) rotate(var(--sr)); }
-  40%  { box-shadow: 0 0 0 6px rgba(46,213,115,.5); transform: scale(1.5) rotate(var(--sr)); }
+  40%  { box-shadow: 0 0 0 6px rgba(124,179,66,.5); transform: scale(1.5) rotate(var(--sr)); }
   100% { box-shadow: 0 1px 4px rgba(0,0,0,.15); transform: scale(1) rotate(var(--sr)); }
 }
 .match-flash {
   position: absolute; inset: 0; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(46,213,115,.25);
+  background: rgba(124,179,66,.25);
   font-size: .55rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
   color: #fff; text-align: center; padding: 20%;
   pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 10;
@@ -302,6 +365,13 @@ body {
 #loading-bar-fill { height: 100%; background: var(--gold); width: 0%; transition: width .3s ease; border-radius: 2px; }
 #loading-txt { font-size: .7rem; color: var(--dim); letter-spacing: 1px; }
 
+/* ── CREDIT ──────────────────────────────────────────────── */
+#credit-mark {
+  position: fixed; left: 0; right: 0; bottom: 3px; z-index: 1;
+  text-align: center; font-size: 6px; letter-spacing: .5px;
+  color: rgba(240,235,216,.06); pointer-events: none; user-select: none;
+}
+
 /* ── ERROR ───────────────────────────────────────────────── */
 #err-overlay {
   display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
@@ -334,7 +404,7 @@ body {
   <div class="screen active" id="start-screen">
     <div class="museum-brand">
       <div class="museum-logo">🦋 Fritz Müller</div>
-      <div class="museum-sub">Casa de Fritz Müller · Blumenau · SC</div>
+      <div class="museum-sub">Casa de Fritz Müller<br>Blumenau · SC</div>
     </div>
     <div class="game-title">ENCONTRE!</div>
     <div class="game-subtitle" id="subtitle">
@@ -370,6 +440,7 @@ body {
       <button class="btn-glossary" onclick="showGlossary()" title="Ver borboletas">🔍</button>
       <button class="btn-start" id="btn-start" onclick="startGame()">JOGAR</button>
     </div>
+    <button class="btn-acervo" onclick="showColecao()">🏛️ Acervo</button>
   </div>
 
   <!-- ── GLOSSÁRIO ── -->
@@ -383,11 +454,43 @@ body {
     </div>
 
     <div class="construction-banner">
-      🚧 Ainda em construção! Estas borboletinhas são só desenhos de brincadeira pra gente jogar por enquanto — as fotos das borboletas de verdade da Casa de Fritz Müller estão a caminho. Volta aqui em breve pra conhecê-las! 🦋
+      🚧 Estas borboletinhas coloridas são desenhos de brincadeira, criados só para o jogo — nenhuma identificação científica real. Quer conhecer os insetos de verdade da coleção? Toque em <strong>Acervo</strong> na tela inicial! 🦋
     </div>
 
     <!-- Grid: borboletas estilizadas (25) -->
     <div class="glossary-grid" id="glossary-grid"></div>
+  </div>
+
+  <!-- ── ACERVO REAL (coleção do museu) ── -->
+  <div class="screen" id="colecao-screen">
+    <div class="gallery-header">
+      <button class="btn-back" onclick="showStart()">← Voltar</button>
+      <div>
+        <div class="gallery-title">Acervo</div>
+        <div class="gallery-count">18 caixas entomológicas reais · toque pra conhecer</div>
+      </div>
+    </div>
+
+    <div class="colecao-intro">
+      🔬 Fotos das caixas entomológicas da Casa de Fritz Müller, com curiosidades sobre cada coleção.
+    </div>
+
+    <div class="colecao-grid" id="colecao-grid"></div>
+  </div>
+
+  <!-- ── DETALHE DE COLEÇÃO (overlay) ── -->
+  <div class="detail-overlay" id="colecao-detail-overlay">
+    <button class="btn-close-detail" onclick="closeColecaoDetail()">✕ Fechar</button>
+
+    <div class="cdetail-img"><img id="cdetail-img" src="" alt=""></div>
+    <div class="cdetail-badge" id="cdetail-badge"></div>
+    <div class="cdetail-num" id="cdetail-num"></div>
+    <div class="cdetail-titulo" id="cdetail-titulo"></div>
+    <div class="cdetail-desc" id="cdetail-desc"></div>
+    <div class="cdetail-fact" id="cdetail-fact">
+      <span class="cdetail-fact-lbl" id="cdetail-fact-lbl"></span>
+      <span id="cdetail-fact-txt"></span>
+    </div>
   </div>
 
   <!-- ── DETALHE DE BORBOLETA (overlay) ── -->
@@ -457,6 +560,8 @@ body {
     <div class="result-badge"   id="r-badge"></div>
     <button class="btn-again" onclick="showStart()">JOGAR NOVAMENTE</button>
   </div>
+
+  <div id="credit-mark">Vibe Coded por G. Scary T.</div>
 
 </div><!-- #app -->
 
@@ -858,6 +963,10 @@ function showGlossary(){
   buildGlossary();
   showScreen('glossary-screen');
 }
+function showColecao(){
+  buildColecao();
+  showScreen('colecao-screen');
+}
 
 function refreshBest(){
   const el=document.getElementById('best-badge');
@@ -934,6 +1043,136 @@ function openDetail(i){
 
 function closeDetail(){
   document.getElementById('detail-overlay').classList.remove('open');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ACERVO REAL — 18 CAIXAS ENTOMOLÓGICAS DA CASA DE FRITZ MÜLLER
+//  Fotos e textos verdadeiros da coleção do museu.
+// ═══════════════════════════════════════════════════════════
+const GROUP_COLOR = {
+  'Mariposas': 'var(--purple)',
+  'Borboletas': 'var(--pink)',
+  'Borboletas & Mariposas': 'var(--gold)',
+  'Besouros': 'var(--green)',
+  'Besouros & Cigarras': 'var(--green)',
+};
+const COLECOES = [
+  { n:1, titulo:'Mestras do Disfarce', grupo:'Mariposas',
+    desc:'Mariposas de grande porte e uma borboleta. Muitas imitam folhas secas, cascas de árvore e sombras para escapar de aves e morcegos.',
+    tipo:'sabia', fato:'Ao repousar, algumas mariposas posicionam as asas para parecerem folhas secas — ficando quase imperceptíveis no ambiente.' },
+  { n:2, titulo:'Cores da Mata Atlântica', grupo:'Borboletas',
+    desc:'Espécies bem conhecidas da Mata Atlântica e da região Neotropical, com cores de advertência, manchas que imitam olhos e reflexos metálicos.',
+    tipo:'sabia', fato:'Muitas borboletas voam de forma irregular só para dificultar a captura por predadores.' },
+  { n:3, titulo:'Cauda-de-Andorinha', grupo:'Borboletas',
+    desc:'Borboletas da família Papilionidae — um dos grupos mais elegantes do mundo. Os prolongamentos nas asas traseiras lembram pequenas caudas.',
+    tipo:'sabia', fato:'Essas "caudas" enganam predadores, que atacam essa parte da asa em vez do corpo — aumentando as chances de sobrevivência.' },
+  { n:4, titulo:'Olhos que Enganam', grupo:'Borboletas',
+    desc:'Diferentes famílias reunidas, mostrando a enorme diversidade de formas, tamanhos e cores das borboletas e suas adaptações evolutivas.',
+    tipo:'sabia', fato:'Algumas espécies têm manchas nas asas que parecem olhos de coruja, só para assustar predadores.' },
+  { n:5, titulo:'Família Nymphalidae', grupo:'Borboletas',
+    desc:'Espécies da família Nymphalidae, com padrões de coloração e faixas importantes para identificação, camuflagem e defesa.',
+    tipo:'sabia', fato:'Muitas passam boa parte do tempo pousadas, abrindo e fechando as asas para regular a própria temperatura.' },
+  { n:6, titulo:'O Azul que Não é Tinta', grupo:'Borboletas',
+    desc:'Diferentes famílias lado a lado: do marrom camuflado ao azul iridescente que confunde predadores em pleno voo.',
+    tipo:'sabia', fato:'O azul de algumas borboletas não vem de pigmento — vem de como as asas refletem a luz.' },
+  { n:7, titulo:'Encontre os Olhos Escondidos', grupo:'Borboletas',
+    desc:'Borboletas de várias famílias, entre tons de camuflagem e manchas que imitam olhos para desviar ataques de predadores.',
+    tipo:'desafio', fato:'Você consegue encontrar as borboletas que imitam olhos? E aquelas que parecem folhas secas?' },
+  { n:8, titulo:'Amarelas & Leves', grupo:'Borboletas',
+    desc:'Borboletas amarelas da família Pieridae, comuns em regiões tropicais — voo leve e suave em busca de néctar.',
+    tipo:'desafio', fato:'Você consegue perceber as diferenças entre as manchas e formatos das asas?' },
+  { n:9, titulo:'Mariposas Beija-Flor', grupo:'Mariposas',
+    desc:'Mariposas-esfinge (Sphingidae), de corpo robusto, ativas ao entardecer — algumas pairam no ar como beija-flores.',
+    tipo:'sabia', fato:'Algumas têm línguas extremamente longas, feitas sob medida para alcançar néctar em flores bem profundas.' },
+  { n:10, titulo:'Atraídas pela Luz', grupo:'Mariposas',
+    desc:'Tons de bege, marrom e cinza — camuflagem perfeita entre troncos e folhas secas. Destaque para a família Notodontidae.',
+    tipo:'sabia', fato:'As lâmpadas confundem o sistema de orientação das mariposas, fazendo com que voem em círculos ao redor delas.' },
+  { n:11, titulo:'Mestras do Mimetismo', grupo:'Borboletas',
+    desc:'Tons de laranja, marrom e preto — cores de alerta que sinalizam toxicidade, verdadeira ou copiada de outra espécie.',
+    tipo:'desafio', fato:'Você consegue identificar diferentes estratégias de defesa observando as cores e padrões das asas?' },
+  { n:12, titulo:'Escondidas x Chamativas', grupo:'Borboletas & Mariposas',
+    desc:'Mariposas camufladas ao lado de borboletas de cores intensas — azul, vermelho e laranja usados para comunicação e defesa.',
+    tipo:'desafio', fato:'Você consegue perceber o contraste entre as espécies que se escondem e aquelas que se destacam?' },
+  { n:13, titulo:'Gigantes Inofensivos', grupo:'Mariposas',
+    desc:'Mariposas de grande porte da família Saturniidae, com asas amplas e padrões delicados em bege e marrom.',
+    tipo:'sabia', fato:'Algumas espécies da família Saturniidae não se alimentam quando adultas — vivem só o tempo de se reproduzir.' },
+  { n:14, titulo:'Asas Douradas', grupo:'Borboletas',
+    desc:'Borboletas de grande porte com tons de marrom e dourado, típicas de ambientes tropicais e importantes na polinização.',
+    tipo:'sabia', fato:'A coloração das asas pode variar entre indivíduos da mesma espécie, por fatores genéticos e ambientais.' },
+  { n:15, titulo:'Vida Noturna', grupo:'Mariposas',
+    desc:'Mariposas em tons suaves de bege, castanho e dourado, com desenhos que imitam folhas secas ou cascas de árvore.',
+    tipo:'sabia', fato:'Muitas mariposas usam o olfato, além da visão, para se orientar e encontrar comida ou parceiros à noite.' },
+  { n:16, titulo:'Asas Quase Invisíveis', grupo:'Borboletas & Mariposas',
+    desc:'Borboletas e mariposas com manchas, faixas e áreas translúcidas nas asas — pequenas variações que fazem toda diferença.',
+    tipo:'sabia', fato:'Algumas borboletas têm partes das asas quase transparentes, o que dificulta a visão de predadores.' },
+  { n:17, titulo:'O Reino dos Besouros', grupo:'Besouros',
+    desc:'Insetos da ordem Coleoptera — os besouros, com élitros endurecidos que protegem o corpo e as asas de voo.',
+    tipo:'sabia', fato:'Os besouros são o maior grupo de animais do mundo — cerca de 1 em cada 4 animais catalogados no planeta é um besouro.' },
+  { n:18, titulo:'Besouros & Cigarras', grupo:'Besouros & Cigarras',
+    desc:'Mais besouros, com cores metálicas ou discretas, ao lado de outros insetos, como as cigarras (ordem Hemiptera).',
+    tipo:'sabia', fato:'Os machos das cigarras produzem sons intensos para atrair parceiras — um dos cantos mais característicos da natureza.' },
+];
+
+let colecaoBuilt = false;
+function buildColecao(){
+  if(colecaoBuilt) return;
+  colecaoBuilt = true;
+  const grid = document.getElementById('colecao-grid');
+  grid.innerHTML = '';
+  COLECOES.forEach((c) => {
+    const card = document.createElement('div');
+    card.className = 'ccard';
+    card.onclick = () => openColecaoDetail(c.n);
+
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'ccard-img';
+    const img = document.createElement('img');
+    img.src = `./colecoes/thumb/${c.n}.jpg`;
+    img.loading = 'lazy';
+    img.alt = c.titulo;
+    imgWrap.appendChild(img);
+
+    const badge = document.createElement('div');
+    badge.className = 'ccard-badge';
+    badge.style.background = GROUP_COLOR[c.grupo] || 'var(--purple)';
+    badge.textContent = c.grupo;
+    imgWrap.appendChild(badge);
+
+    const body = document.createElement('div');
+    body.className = 'ccard-body';
+    body.innerHTML =
+      `<div class="ccard-num">Coleção ${c.n}</div>`+
+      `<div class="ccard-titulo">${c.titulo}</div>`;
+
+    card.appendChild(imgWrap);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+}
+
+function openColecaoDetail(n){
+  const c = COLECOES.find(x => x.n === n);
+  const ov = document.getElementById('colecao-detail-overlay');
+
+  document.getElementById('cdetail-img').src = `./colecoes/${c.n}.jpg`;
+  const badge = document.getElementById('cdetail-badge');
+  badge.textContent = c.grupo;
+  badge.style.background = GROUP_COLOR[c.grupo] || 'var(--purple)';
+  document.getElementById('cdetail-num').textContent = 'Coleção ' + c.n;
+  document.getElementById('cdetail-titulo').textContent = c.titulo;
+  document.getElementById('cdetail-desc').textContent = c.desc;
+
+  const fact = document.getElementById('cdetail-fact');
+  fact.className = 'cdetail-fact ' + c.tipo;
+  document.getElementById('cdetail-fact-lbl').textContent = c.tipo === 'desafio' ? '🔎 Desafio' : '✨ Você sabia?';
+  document.getElementById('cdetail-fact-txt').textContent = c.fato;
+
+  ov.classList.add('open');
+  ov.scrollTop = 0;
+}
+
+function closeColecaoDetail(){
+  document.getElementById('colecao-detail-overlay').classList.remove('open');
 }
 
 // ═══════════════════════════════════════════════════════════
