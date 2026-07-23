@@ -188,12 +188,6 @@ body {
 .detail-vibe { font-size: .88rem; font-style: italic; color: var(--gold); margin: 3px 0 8px; }
 .detail-section { font-size: .6rem; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin: 10px 0 3px; }
 .detail-text { font-size: .88rem; line-height: 1.6; color: rgba(240,235,216,.82); text-align: center; max-width: 340px; }
-.detail-construction {
-  background: rgba(242,184,49,.1); border: 1px solid rgba(242,184,49,.25);
-  border-radius: 12px; padding: 12px 16px; max-width: 340px;
-  font-size: .8rem; line-height: 1.55; color: rgba(240,235,216,.85); margin-top: 12px;
-  text-align: center;
-}
 .btn-close-detail {
   position: sticky; top: 0; align-self: flex-end; z-index: 10;
   background: rgba(255,255,255,.12); border: none; color: var(--text);
@@ -300,7 +294,7 @@ body {
 }
 .bfly-sym img {
   width: 100%; height: 100%; object-fit: contain;
-  mix-blend-mode: multiply; pointer-events: none; display: block;
+  pointer-events: none; display: block;
 }
 .bfly-sym .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.4em; }
 #bottom-card .bfly-sym { cursor: pointer; }
@@ -454,7 +448,7 @@ body {
     </div>
 
     <div class="construction-banner">
-      🚧 Estas borboletinhas coloridas são desenhos de brincadeira, criados só para o jogo — nenhuma identificação científica real. Quer conhecer os insetos de verdade da coleção? Toque em <strong>Acervo</strong> na tela inicial! 🦋
+      🚧 As fotos aqui são de borboletas de verdade, mas os nomes são inventados só de brincadeira para o jogo — não são identificações científicas reais. Quer conhecer os insetos de verdade da coleção? Toque em <strong>Acervo</strong> na tela inicial! 🦋
     </div>
 
     <!-- Grid: borboletas estilizadas (25) -->
@@ -506,10 +500,6 @@ body {
 
     <div class="detail-section">Curiosidade</div>
     <div class="detail-text" id="detail-info"></div>
-
-    <div class="detail-construction">
-      🚧 Esta é só uma ilustração de brincadeira enquanto o jogo está em construção — em breve ela vai ganhar uma foto de borboleta de verdade!
-    </div>
   </div>
 
   <!-- ── JOGO ── -->
@@ -904,7 +894,8 @@ function renderCard(el, deckIdx, clickable){
       `top:${R+fr[i].y*R-half}px`,
       `width:${fsz}px`, `height:${fsz}px`,
       `--sr:${rot}deg`, `transform:rotate(${rot}deg)`,
-      `background:${b.imgSrc ? 'var(--card)' : b.color}`,
+      `background:${b.imgSrc ? 'transparent' : b.color}`,
+      `box-shadow:${b.imgSrc ? 'none' : '0 1px 4px rgba(0,0,0,.12)'}`,
     ].join(';');
 
     if(b.imgSrc){
