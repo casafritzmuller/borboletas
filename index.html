@@ -896,6 +896,8 @@ function renderCard(el, deckIdx, clickable){
       `--sr:${rot}deg`, `transform:rotate(${rot}deg)`,
       `background:${b.imgSrc ? 'transparent' : b.color}`,
       `box-shadow:${b.imgSrc ? 'none' : '0 1px 4px rgba(0,0,0,.12)'}`,
+      `border-radius:${b.imgSrc ? '0' : '50%'}`,
+      `overflow:${b.imgSrc ? 'visible' : 'hidden'}`,
     ].join(';');
 
     if(b.imgSrc){
